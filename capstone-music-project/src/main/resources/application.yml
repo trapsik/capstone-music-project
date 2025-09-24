@@ -1,0 +1,8 @@
+# 어플리케이션 포트 => 디폴트가 8080
+server:
+  port: 8088
+# mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+  type-aliases-package: com.example.demo.dtd 
