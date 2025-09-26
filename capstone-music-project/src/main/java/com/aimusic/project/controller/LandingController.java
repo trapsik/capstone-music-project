@@ -10,4 +10,9 @@ public class LandingController {
     public String landingPage() {
         return "landing-ai-studio"; // http://localhost:8088/landing으로 접속
     }
+    
+    @GetMapping("/signup")
+    public String signupPage() {
+        return "signup";  // signup.html 호출
+    }
 }
