@@ -8,11 +8,11 @@
       <link rel="stylesheet" href="./assets/libs/swiper/swiper-bundle.min.css" />
       <!-- Favicon icon-->
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/heartbeat-favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/heartbeat-favicon-16x16.png" />
 <link rel="manifest" href="./assets/images/favicon/site.webmanifest" />
 <link rel="mask-icon" href="./assets/images/favicon/block-safari-pinned-tab.svg" color="#8b3dff" />
-<link rel="shortcut icon" href="./assets/images/favicon/favicon.ico" />
+<link rel="shortcut icon" href="./assets/images/favicon/heartbeat-favicon.ico" />
 <meta name="msapplication-TileColor" content="#8b3dff" />
 <meta name="msapplication-config" content="./assets/images/favicon/tile.xml" />
 
@@ -32,24 +32,28 @@
 <!-- Theme CSS -->
 <link rel="stylesheet" href="./assets/css/theme.min.css">
 
-      <title>Landing AI Studio - Responsive Website Template | Block</title>
+<!-- Jeongsik CSS -->
+<link rel="stylesheet" href="./assets/css/jeongsik.css">
+
+      <title>HeartBeat-감정별음악추천시스템</title>
    </head>
    <body data-bs-theme="dark">
       <!-- Navbar -->
 <header>
    <nav class="navbar navbar-expand-lg navbar-light w-100">
       <div class="container px-3">
-         <a class="navbar-brand" href="./index.html"><img src="./assets/images/logo/logo.svg" alt /></a>
+         <a class="navbar-brand" href="./index.html"><img src="./assets/images/logo/Heartbeat.svg" class="logo-heartbeat" /></a>
          <button class="navbar-toggler offcanvas-nav-btn" type="button">
             <i class="bi bi-list"></i>
          </button>
          <div class="offcanvas offcanvas-start offcanvas-nav" style="width: 20rem">
             <div class="offcanvas-header">
-               <a href="./index.html" class="text-inverse"><img src="./assets/images/logo/logo.svg"
-                     alt /></a>
+               <a href="./index.html" class="text-inverse"><img src="./assets/images/logo/Heartbeat.svg"
+                     alt="로고" class="logo-heartbeat" /></a>
                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body pt-0 align-items-center">
+               <!-- 
                <ul class="navbar-nav mx-auto align-items-lg-center">
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -472,6 +476,7 @@
                      </div>
                   </li>
                </ul>
+               -->
                <div class="mt-3 mt-lg-0 d-flex align-items-center">
                   <a href="./signin" class="btn btn-light mx-2">Login</a>
                   <a href="./signup" class="btn btn-primary">Create account</a>
@@ -494,14 +499,20 @@
                   <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12">
                      <div class="text-center d-flex flex-column gap-6" data-cue="zoomIn">
                         <div class="d-flex flex-column gap-3">
-                           <h1 class="display-4 mb-0"><span class="gradient-text">Unleash the Power of AI</span></h1>
+                           <h1 class="display-4 mb-0"><span class="gradient-text">오늘은 어떠셨나요?</span></h1>
+                           <h1 class="display-4 mb-0"><span class="gradient-text">당신의 하루를 들려주세요</span></h1>
+                           <!-- 
                            <p class="mb-0 lead px-xxl-8">Create stunning content, generate ideas, and automate tasks with our suite of AI-powered tools designed for creators and businesses.</p>
+                           -->
                         </div>
+                        <!-- 
                         <div class="d-flex flex-row gap-3 justify-content-center">
                            <a href="./signup" class="btn btn-primary">Sign up for Free</a>
                            <a href="./index.html" class="btn btn-dark">See demo</a>
-                        </div>
+                        </div> 
+                        -->
                         <div class="d-flex flex-row align-items-center justify-content-center gap-3 mt-2">
+                           <!--
                            <div class="avatar-group">
                               <span class="avatar avatar-md">
                                  <img alt="avatar " src="./assets/images/avatar/avatar-1.jpg" class="rounded-circle" />
@@ -517,6 +528,30 @@
                               </span>
                            </div>
                            <small class="fw-medium">Join 10,000+ users creating with AI</small>
+                           -->
+                           <div class="row g-2 container-inputmood">
+                         	<div class="col-md-9 col-8 inputmood">
+                         		<!--  
+                            	<label for="subscribeEmail" class="visually-hidden">Email</label>
+                            	<span class="position-relative d-flex align-items-center">
+                            	-->
+                            		<!-- 
+                            		<span class="position-absolute z-1 top-0 mt-2 mx-3">
+                            			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                               				<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"></path>
+                             			</svg>
+                             		</span>
+                             		-->
+                               		<input type="input" class="form-control ps-6" id="subscribeEmail" placeholder="오늘은 어떤 기분인가요?" required="">
+                            	<!--  </span>-->
+                            	<!--<div class="invalid-feedback">Please enter email.</div>-->
+                         	</div>
+                         	<div class="col-md-3 col-4 submit-btn">
+                            	<div>
+                               		<button type="submit" class="btn btn-primary">추천해볼까요?</button>
+                            	</div>
+                         	</div>
+                      		</div>
                         </div>
                      </div>
                   </div>
@@ -525,7 +560,7 @@
          </section>
          <!--Hero section end-->
          <!--Ai product section start-->
-         <section class="py-xl-9 pb-lg-9 pt-5 pb-6" data-cue="fadeIn">
+         <!-- <section class="py-xl-9 pb-lg-9 pt-5 pb-6" data-cue="fadeIn">
             <div class="container">
                <div class="row">
                   <div class="col-12">
@@ -816,10 +851,10 @@
                   </div>
                </div>
             </div>
-         </section>
+         </section> -->
          <!--Ai product section end-->
          <!--How it work start-->
-         <section class="py-xl-9 py-lg-7 py-5" data-cue="fadeIn">
+         <!-- <section class="py-xl-9 py-lg-7 py-5" data-cue="fadeIn">
             <div class="container">
                <div class="row">
                   <div class="col-12">
@@ -865,7 +900,7 @@
                   </div>
                </div>
             </div>
-         </section>
+         </section> -->
          <!--How it work end-->
          <!--Testimonial start-->
          <section class="py-xl-9 py-lg-7 py-5" data-cue="fadeIn">
@@ -1167,7 +1202,7 @@
          </section>
          <!--Testimonial end-->
          <!--Pricing section start-->
-         <section class="py-xl-9 py-lg-7 py-5" data-cue="fadeIn">
+         <!-- <section class="py-xl-9 py-lg-7 py-5" data-cue="fadeIn">
             <div class="container pb-xl-5">
                <div class="row">
                   <div class="col-12">
@@ -1588,7 +1623,7 @@
                   </div>
                </div>
             </div>
-         </section>
+         </section> -->
          <!--Pricing section end-->
          <!--Faq start-->
          <section class="py-xl-9 pb-md-8 pt-lg-8 pb-lg-10 py-5" data-cue="fadeIn">
@@ -1769,7 +1804,7 @@
             <div class="d-flex flex-column gap-4 mb-5 mb-xl-0">
                 <div>
                     <a href="#" class="text-inverse">
-                       <img src="./assets/images/logo/logo.svg" alt="logo" />
+                       <img src="./assets/images/logo/Heartbeat.svg" alt="logo" />
                     </a>
                  </div>
                  <div class="d-flex flex-column gap-4">
