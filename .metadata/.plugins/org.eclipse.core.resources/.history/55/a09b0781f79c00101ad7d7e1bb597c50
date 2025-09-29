@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.logo-heartbeat{
+	height: 78px;
+	width: 208px;
+}
+.js{
+	justify-content: space-between;
+}

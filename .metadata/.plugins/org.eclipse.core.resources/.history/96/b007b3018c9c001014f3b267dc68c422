@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.logo-heartbeat{
+	height: 52px;
+	width: 208px;
+}
