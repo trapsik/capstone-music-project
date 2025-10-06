@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.logo-heartbeat{
+	height: 78px;
+	width: 208px;
+}
+.pt-0{
+	display: flex;
+	justify-content: flex-end;
+}
+.container_inputmood{
+	width: 620px;
+	display: flex;
+	justify-content: center;
+}
+.inputmood{
+	width: 470px;
+}
+.submit-btn{
+	width: 150px;
+}
