@@ -1,6 +1,12 @@
 # 어플리케이션 포트 => 디폴트가 8080
 server:
   port: 8088
+
+# ai api 설정
+ai:
+  base-url: https://super-aimusic.o-r.kr  # AWS Lightsail 도메인
+
+# DB 설정
 # mybatis
 #mybatis:
 #  mapper-locations: classpath:mapper/*.xml
