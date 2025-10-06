@@ -6,13 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LandingController {
 
-    @GetMapping("/landing")
+	// 랜딩 페이지
+    @GetMapping("/")
     public String landingPage() {
-        return "landing-ai-studio"; // http://localhost:8088/landing으로 접속
+        return "landing-ai-studio"; // '/' 루트 경로로 코드 변경 -> http://localhost:8088으로 접속
     }
     
-    @GetMapping("/signup")
-    public String signupPage() {
-        return "signup";  // signup.html 호출
-    }
+	// 회원가입 페이지
+	@GetMapping("/signup")
+	public String signupPage() {
+		return "signup"; // signup.html 호출
+	}
+	 
 }
