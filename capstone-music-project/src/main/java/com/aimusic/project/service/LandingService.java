@@ -1,12 +1,14 @@
 package com.aimusic.project.service;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.aimusic.project.dto.AiRequestDto;
+import com.aimusic.project.dto.AiResponseDto;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -15,24 +17,16 @@ public class LandingService {
 	// AI API 호출용 WebClient
 	private final WebClient aiWebClient;
 	
-	@Value("${ai.base-url:}")
-	private String aiBaseUrl;	// AI API URL
-	
-	public String forwardToAi(String feeling) {
-		// .yml에 ai.endpoint가 비어있으면 AI API 호출 안함 (임시 설정)
-		if (aiBaseUrl == null || aiBaseUrl.isBlank()) {
-			return "AI API URL이 설정되지 않았습니다.";
-		}
+	public Mono<String> forwardToAi(String feeling) {
+		// 요청 데이터를 DTO 객체로 만들기
+		AiRequestDto requestDto = new AiRequestDto(feeling);
 		
-		String payload = "{\"text\":\"" + feeling.replace("\"", "\\\"") + "\"}";
-		
-		// 임시 엔드포인트: "/ai-feeling" 지정 (나중에 "endpoint"로 변경)
+		// WebClient를 사용하여 AI API에 POST 요청 보내기
 		return aiWebClient.post()
-				.uri("/ai-feeling")
-				.contentType(MediaType.APPLICATION_JSON)
-				.bodyValue(payload)
-				.retrieve()
-				.bodyToMono(String.class)
-				.block();
+				.uri("/predict") // AI API의 엔드포인트 URI로 변경
+				.bodyValue(requestDto) // DTO 객체를 보내면 WebClient가 JSON으로 변환
+				.retrieve()	// 응답 수신
+				.bodyToMono(AiResponseDto.class) // 응답을 DTO로 변환
+				.map(AiResponseDto::getEmotion); // DTO에서 "emotion" 필드 추출 후 반환
 	}
 }
