@@ -4,7 +4,7 @@ server:
 
 # ai api 설정
 ai:
-  base-url: https://super-aimusic.o-r.kr  # AWS Lightsail 도메인
+  base-url: http://52.78.177.7:5000/predict  # AWS Lightsail - AI API URL
 
 # DB 설정
 # mybatis
