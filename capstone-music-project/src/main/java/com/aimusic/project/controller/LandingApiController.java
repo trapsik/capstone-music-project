@@ -1,5 +1,10 @@
 package com.aimusic.project.controller;
 
+//========================================================================
+//LandingApiController.java: 손님(프론트엔드)의 요청을 가장 먼저 받는 '웨이터'
+//손님의 요청을 받고, 메인 셰프에게 전달하는 역할만 합니다.
+//========================================================================
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -15,18 +20,24 @@ import com.aimusic.project.service.LandingService;
 @RestController
 @RequestMapping("/api")
 public class LandingApiController {
+
+	// 메인 셰프(LandingService) 지정
 	private final LandingService landingService;
-	
-	// 사용자 감정 정보 수신 API
+
+	// AI API 호출 전용 API
+	// '/feeling' 이라는 테이블로 'POST' 방식의 주문이 들어왔을 때 처리하는 방법
+	@CrossOrigin(origins = "*") // CORS 설정: 모든 외부 주소에서의 요청을 허용
 	@PostMapping("/feeling")
-	public Mono<String> receiveFeeling(@RequestBody Map<String,String> payload) {
-	    String feeling = payload.get("feeling");
-		log.info("userFeeling = {}", feeling);
-	    // TODO : AI 연동 시 서비스 호출 추가 예정
-	    // return "사용자 감정: " + feeling;
-	    
-	    // 현재 주석코드: AI API base-URL 변경 시 주석 제거
-	    return landingService.forwardToAi(feeling);	// AI API 호출
+	// @RequestBody: 손님이 보낸 주문서(JSON 형식의 데이터)를 payload 변수에 담고, Map 자료형으로 변환
+	public Mono<String> receiveFeeling(@RequestBody Map<String, String> payload) {
+		String feeling = payload.get("feeling"); // 주문서에서 'feeling' 항목의 값을 추출
+		log.info("userFeeling = {}", feeling); // 주문서 내용 로그로 출력(콘솔)
+		// TODO : AI 연동 시 서비스 호출 추가 예정
+		// return "사용자 감정: " + feeling;
+
+		// 메인 셰프(landingService)에게 'forwardToAi' 요리를 해달라고 재료(feeling)를 전달
+	    // 셰프가 "나중에 결과가 담길 진동벨(Mono<String>)"을 주면, 그대로 손님에게 전달
+		return landingService.forwardToAi(feeling);
 	}
 
 }

@@ -1,10 +1,14 @@
+# ====================================================================
+# application.yml: 우리 서버의 각종 설정 정보를 기록하는 '전화번호부' 파일
+# ====================================================================
+
 # 어플리케이션 포트 => 디폴트가 8080
 server:
   port: 8088
 
 # ai api 설정
 ai:
-  base-url: https://super-aimusic.o-r.kr  # AWS Lightsail 도메인
+  base-url: http://52.78.177.7:5000  # AWS Lightsail - AI API URL
 
 # DB 설정
 # mybatis
