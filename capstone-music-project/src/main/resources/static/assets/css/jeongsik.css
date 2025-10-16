@@ -28,3 +28,48 @@
 	align-items: center; 
 	justify-content: center;
 }
+
+.slider-container {
+    overflow: hidden !important;
+    margin: 0 auto;
+    height: 280px;
+}
+
+.slider-track {
+    
+    display: flex !important;
+    flex-wrap: nowrap !important; 
+    
+    height: 100%;
+    
+    animation: slide-left-to-right 80s linear infinite !important; 
+    
+}
+
+.slider-track > .col {
+    flex: 0 0 20% !important; 
+    max-width: 20% !important;
+    min-width: 20% !important;
+}
+
+
+@keyframes slide-left-to-right {
+    0% {
+        transform: translateX(-200%); 
+    }
+    
+    100% {
+        transform: translateX(0); 
+    }
+}
+
+/* 이미지를 채우기 위해 내부 콘텐츠의 패딩과 테두리를 제거하거나 최소화합니다. */
+.slider-track .rounded-3 {
+    border: none !important; /* 테두리 제거 */
+    padding: 0 !important;   /* 내부 패딩 제거 */
+    background-color: transparent !important; /* 배경색 투명으로 설정 */
+}
+
+
+
+
