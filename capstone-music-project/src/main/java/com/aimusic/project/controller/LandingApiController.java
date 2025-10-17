@@ -16,10 +16,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap; // 추가
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView; // RedirectView 추가
-import org.springframework.web.servlet.mvc.support.RedirectAttributes; // RedirectAttributes 추가
-
-import jakarta.servlet.http.HttpSession; // HttpSession 추가
 
 import com.aimusic.project.service.LandingService;
 
