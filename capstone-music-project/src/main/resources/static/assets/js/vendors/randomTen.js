@@ -62,7 +62,11 @@ function renderAlbumCovers(albums) {
             img.style.width = '100%';
             img.style.height = '100%';
             img.style.objectFit = 'cover'; 
-            img.style.borderRadius = '0.5rem'; 
+            img.style.borderRadius = '0.5rem';
+			// ★★★ 투명도 설정 (0.9 = 90% 불투명) ★★★
+			img.style.opacity = '0.9'; // 숫자를 낮출수록 더 투명해지고 덜 부각됩니다.
+			//img.style.marginLeft = '4px';
+			//img.style.marginRight = '4px';
 
             // 박스에 이미지 삽입
             contentContainer.appendChild(img);

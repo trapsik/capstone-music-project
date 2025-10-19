@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.logo-heartbeat{
+.logo-plimo{
 	height: 78px;
 	width: 208px;
 }
@@ -50,6 +50,8 @@
     flex: 0 0 20% !important; 
     max-width: 20% !important;
     min-width: 20% !important;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 
