@@ -9,11 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
  <!-- Favicon icon-->
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/plimo-favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/plimo-favicon-16x16.png" />
 <link rel="manifest" href="./assets/images/favicon/site.webmanifest" />
 <link rel="mask-icon" href="./assets/images/favicon/block-safari-pinned-tab.svg" color="#8b3dff" />
-<link rel="shortcut icon" href="./assets/images/favicon/favicon.ico" />
+<link rel="shortcut icon" href="./assets/images/favicon/plimo-favicon.ico" />
 <meta name="msapplication-TileColor" content="#8b3dff" />
 <meta name="msapplication-config" content="./assets/images/favicon/tile.xml" />
 
@@ -34,7 +34,7 @@
 <link rel="stylesheet" href="./assets/css/theme.min.css">
 <link rel="stylesheet" href="./assets/css/jeongsik.css">
 
-  <title>Block | Multipurpose Business & Professional Template</title>
+  <title>Plimo | 음악추천중</title>
 
 </head>
 
@@ -43,14 +43,14 @@
 <header>
    <nav class="navbar navbar-expand-lg navbar-light w-100">
       <div class="container px-3">
-         <a class="navbar-brand" href="./index.html"><img src="./assets/images/logo/plimo-logo.svg" alt /></a>
+         <a class="navbar-brand" href="./index.html"><img src="./assets/images/logo/plimo.svg" class="logo-plimo" /></a>
          <button class="navbar-toggler offcanvas-nav-btn" type="button">
             <i class="bi bi-list"></i>
          </button>
          <div class="offcanvas offcanvas-start offcanvas-nav" style="width: 20rem">
             <div class="offcanvas-header">
-               <a href="./index.html" class="text-inverse"><img src="./assets/images/logo/plimo-logo.svg"
-                     alt /></a>
+               <a href="./index.html" class="text-inverse"><img src="./assets/images/logo/plimo.svg"
+                     class="logo-plimo"/></a>
                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body pt-0 align-items-center">
@@ -487,7 +487,10 @@
 </header>
   <main>
     <!--Hero start-->
-    <section class="py-lg-8 py-5" data-cue="fadeIn">
+    <section class="particals py-md-10 py-5"
+         style="background: url(./assets/images/ai-studio/ai-hero-glow.png) no-repeat; background-size: cover; background-position: center"
+         data-cue="fadeIn">
+         <canvas id="starCanvas"></canvas>
       <div class="container py-lg-8">
         <div class="row align-items-center gy-8">
           <div class="col-xxl-5 col-lg-6 analysis-complete" data-cue="fadeIn">
@@ -521,7 +524,7 @@
 
     </section>
     
-    <section class="py-lg-8 py-5" data-cue="fadeIn">
+    <section class="py-lg-8 py-5" style="background: url(./assets/images/ai-studio/background.png) no-repeat; background-size: cover; background-position: center" data-cue="fadeIn">
   <div class="container ">
     <div class="table-responsive-xl slider-container">
       <div class="row row-cols-xl-5 row-cols-md-3 row-cols-1 gx-5 flex-nowrap pb-4 pb-xl-0 slider-track">

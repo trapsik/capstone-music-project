@@ -39,17 +39,17 @@
     
     display: flex !important;
     flex-wrap: nowrap !important; 
-    
+    /*width: 400%;*/
     height: 100%;
     
-    animation: slide-left-to-right 80s linear infinite !important; 
+    animation: slide-left-to-right 60s linear infinite !important; 
     
 }
 
 .slider-track > .col {
-    flex: 0 0 20% !important; 
-    max-width: 20% !important;
-    min-width: 20% !important;
+    flex: 0 0 calc(20% - 40px) !important; 
+    max-width: calc(20% - 40px) !important;
+    min-width: calc(20% - 40px) !important;
     margin-left: 20px;
     margin-right: 20px;
 }
