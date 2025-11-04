@@ -52,6 +52,11 @@
     min-width: calc(20% - 40px) !important;
     margin-left: 20px;
     margin-right: 20px;
+    /* [수정] 앨범 커버와 텍스트를 모두 담기 위해 높이를 늘리고 Flexbox 설정 */
+    height: 350px; /* 앨범 커버 + 텍스트를 담을 수 있는 충분한 높이 */
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important; /* 부모 .col의 기본 패딩 제거 */
 }
 
 
@@ -70,8 +75,48 @@
     border: none !important; /* 테두리 제거 */
     padding: 0 !important;   /* 내부 패딩 제거 */
     background-color: transparent !important; /* 배경색 투명으로 설정 */
+    /* [수정] 테두리 및 배경 유지 (선택 사항) */
+    flex-grow: 1; /* 남은 공간을 차지하여 높이를 유지 */
+    display: flex; /* 내부 콘텐츠를 정렬하기 위해 Flexbox 사용 */
+    flex-direction: column; /* 앨범 커버와 텍스트를 수직으로 배열 */
 }
 
+/* 앨범 커버 이미지를 감싸는 wrapper (JS에서 추가된 div) */
+.slider-track .rounded-3 > div:first-child {
+    flex-shrink: 0; /* 커버 wrapper는 줄어들지 않음 */
+    width: 100%;
+    /* 앨범 커버가 차지할 공간을 명확히 정의 (예: 비율을 1:1로 유지) */
+    aspect-ratio: 1 / 1; 
+    margin-bottom: 5px !important;
+}
 
+/* 이미지 스타일 (JS에서 지정하지만 CSS로 재확인) */
+.slider-track img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+/* 트랙 정보 텍스트 영역 (JS에서 추가된 div:last-child) */
+.slider-track .rounded-3 > div:last-child {
+    padding: 0 5px 5px 5px !important; 
+    text-align: center;
+    /* 텍스트 정보가 너무 길어서 잘릴 경우를 대비 */
+    overflow: hidden; 
+}
+
+.slider-track h5 { /* 트랙 이름 */
+    font-size: 0.95em;
+    font-weight: 600;
+    margin: 0;
+    color: #fff; /* 텍스트 색상 (배경이 어두우므로 흰색 권장) */
+}
+
+.slider-track p { /* 아티스트 이름 */
+    font-size: 0.8em;
+    color: #bbb; /* 밝은 회색 */
+    margin: 0;
+}
 
 

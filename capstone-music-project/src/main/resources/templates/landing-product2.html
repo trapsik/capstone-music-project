@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
   <link rel="stylesheet" href="./assets/libs/glightbox/dist/css/glightbox.min.css" />
@@ -34,14 +34,8 @@
 <link rel="stylesheet" href="./assets/css/theme.min.css">
 <link rel="stylesheet" href="./assets/css/jeongsik.css">
 
-  <title>Plimo | 음악추천중</title>
-	<script th:inline="javascript">
-    /*<![CDATA[*/
-    // Controller에서 전달된 'analyzedEmotion' 값을 JS 변수에 할당합니다.
-    window.GLOBAL_EMOTION_PARAM = '[[${analyzedEmotion}]]';
-    /*]]>*/
-  </script>
-	
+  <title>Plimo | 음악추천완료</title>
+
 </head>
 
 <body>
@@ -503,9 +497,8 @@
           <!-- 텍스트 보라색 강조 -->
           <!-- <span class="text-primary">Smart. Silent.</span> -->
             <h1 class="display-4">
-            	<p th:text="${emotionPhrase}"></p></br/>
-            	<p th:text="|${recommendationPhrase}을 추천합니다.|"></p></br>
-            	<p>잠시만 기다려주세요.</p>
+            	<p th:text="|${recommendationPhrase} 당신을 위한 선곡|"></p></br>
+            	
             </h1>
             <!-- <p class="mb-5">Experience the next generation of urban mobility with our AI-powered, ultra-light eBike.
             </p>
@@ -1954,8 +1947,7 @@
   <script src="./assets/js/vendors/rellax.js"></script>
   
   <!--  Ai API JS -->
-   <script src="./assets/js/vendors/randomTen.js"></script>
-   <script src="./assets/js/vendors/pending-redirect.js"></script>
+   <script src="./assets/js/vendors/emotion-recommend.js"></script>
 </body>
 
 </html>
