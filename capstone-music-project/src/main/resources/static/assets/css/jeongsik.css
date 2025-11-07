@@ -32,7 +32,8 @@
 .slider-container {
     overflow: hidden !important;
     margin: 0 auto;
-    height: 280px;
+    /* height: 280px; */
+    height: auto;
 }
 
 .slider-track {
@@ -53,7 +54,10 @@
     margin-left: 20px;
     margin-right: 20px;
     /* [수정] 앨범 커버와 텍스트를 모두 담기 위해 높이를 늘리고 Flexbox 설정 */
-    height: 350px; /* 앨범 커버 + 텍스트를 담을 수 있는 충분한 높이 */
+    /* height: 350px; 앨범 커버 + 텍스트를 담을 수 있는 충분한 높이 */
+    min-height: 350px;
+    height: auto;
+    
     display: flex;
     flex-direction: column;
     padding: 0 !important; /* 부모 .col의 기본 패딩 제거 */
@@ -93,6 +97,7 @@
 /* 이미지 스타일 (JS에서 지정하지만 CSS로 재확인) */
 .slider-track img {
     width: 100%;
+    max-height: 280px;
     height: 100%;
     object-fit: cover;
     border-radius: 0.5rem;
@@ -100,6 +105,7 @@
 
 /* 트랙 정보 텍스트 영역 (JS에서 추가된 div:last-child) */
 .slider-track .rounded-3 > div:last-child {
+	flex-shrink: 0;
     padding: 0 5px 5px 5px !important; 
     text-align: center;
     /* 텍스트 정보가 너무 길어서 잘릴 경우를 대비 */
@@ -118,5 +124,6 @@
     color: #bbb; /* 밝은 회색 */
     margin: 0;
 }
+
 
 
