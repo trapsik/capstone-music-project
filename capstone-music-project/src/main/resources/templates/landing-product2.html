@@ -36,12 +36,50 @@
 
   <title>Plimo | 음악추천완료</title>
 <style>
+  /* --- 1. 앨범 부드럽게 등장 (Fade-in) --- */
   #album-track {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
   }
   #album-track.loaded {
     opacity: 1;
+  }
+
+  /* --- 2. 앨범 잘림 방지 및 솟아오르기 (축 분리 최종판) --- */
+  
+  /*
+    (★핵심★)
+    부모 컨테이너(가면)에게
+    "옆으로는" 자르고 (hidden)
+    "위로는" 삐져나오게 (visible) 허용합니다.
+  */
+  .slider-container,
+  .table-responsive-xl {
+    overflow-x: hidden !important; /* 옆으로 가는 건 잘라라! */
+    overflow-y: visible !important; /* 위로 솟는 건 봐줘라! */
+  }
+
+  /* 컨베이어 벨트 자체도 위로 삐져나오는 것을 허용합니다.
+  */
+  .slider-track {
+    overflow-y: visible !important;
+    padding-top: 80px;
+  }
+
+  .slider-item {
+    transition: transform 0.3s ease-in-out;
+    position: relative; /* z-index를 적용하려면 필수 */
+    z-index: 1; /* 평소에는 기본 z-index */
+  }
+
+  .slider-item:hover {
+    transform: translateY(-80px);
+    z-index: 80; /* 마우스를 올리면 다른 앨범들 위로 솟아오름 */
+  }
+
+  /* --- 3. 컨베이어 벨트 멈추기 (최후의 수단) --- */
+  .slider-track:hover {
+    animation-play-state: paused;
   }
 </style>
 </head>
@@ -97,8 +135,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -107,8 +145,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -117,8 +155,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -127,8 +165,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -137,8 +175,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -147,8 +185,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -158,8 +196,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -168,8 +206,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -178,8 +216,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -188,8 +226,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -198,8 +236,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -208,8 +246,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -218,8 +256,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -228,8 +266,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -238,8 +276,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -248,8 +286,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -258,8 +296,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -268,8 +306,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -278,8 +316,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -288,8 +326,8 @@
                 class="img-fluid track-cover"
                 style="width: 100%; height: auto; aspect-ratio: 1 / 1.5; object-fit: cover;"
             >
-            <div class="track-info">
-                <h6 class="text-white fw-bold mb-0 text-truncate track-title"></h6>
+            <div class="track-info text-start">
+                <h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
                 <p class="text-muted small text-truncate track-artist"></p>
             </div>
         </div>
@@ -329,6 +367,9 @@
   
   <!--  Ai API JS -->
    <script src="./assets/js/vendors/emotion-recommend.js"></script>
+   
+   
 </body>
+
 
 </html>

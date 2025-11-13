@@ -234,7 +234,7 @@ async function initRecommendation() {
 	// 4. HTML 본문에 상세 트랙 리스트 렌더링 (main content)
 	renderTrackList(tracks);
 	document.getElementById('album-track').classList.add('loaded');
-
+	
 	console.log('--- 추천 결과 페이지 초기화 완료 ---');
 }
 
