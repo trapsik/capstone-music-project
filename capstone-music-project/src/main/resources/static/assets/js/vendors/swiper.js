@@ -24,23 +24,14 @@ document.addEventListener('DOMContentLoaded', function () {
         autoplay: {
             delay: 1,                  // 딜레이 1ms (멈추지 않고 계속)
             disableOnInteraction: false, // 사용자가 건드려도 계속 재생
+			pauseOnMouseEnter: true,
         },
         speed: 5000, // 5초에 걸쳐 한 바퀴 도는 속도 (숫자가 클수록 느림)
-        
+        observer: true,
+		observeParents: true,
         // --- (중요!) 마우스 올리면 멈추기 ---
         // Swiper 라이브러리 자체 기능 활용
-        on: {
-            init: function () {
-                // 마우스를 올리면 멈춤
-                this.el.addEventListener('mouseenter', () => {
-                    this.autoplay.stop();
-                });
-                // 마우스를 떼면 다시 시작
-                this.el.addEventListener('mouseleave', () => {
-                    this.autoplay.start();
-                });
-            },
-        },
+    
     });
 
     console.log("'.slider-track'에 대한 Swiper 초기화 및 호버 이벤트 부착 완료.");
