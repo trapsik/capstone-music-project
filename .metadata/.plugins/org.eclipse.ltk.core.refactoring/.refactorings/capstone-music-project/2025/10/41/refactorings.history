@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;capstone-music-project/src/main/resources/static/assets/js/vendors/aiapi.js&apos; to &apos;ai-api.js&apos;" description="Rename resource &apos;aiapi.js&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/static/assets/js/vendors/aiapi.js" name="ai-api.js" stamp="1759814500543" updateReferences="true"/>
+</session>

@@ -1,8 +1,8 @@
 package com.aimusic.project.service;
 
 //=================================================================================
-//LandingService.java: 실제 핵심 로직을 처리하는 '메인 셰프'
-//외부 API 호출, 데이터 가공 등 복잡한 요리를 담당합니다.
+//LandingService.java: 실제 핵심 로직을 처리
+//외부 API 호출, 데이터 가공 등 담당
 //=================================================================================
 
 import org.springframework.stereotype.Service;
@@ -22,8 +22,6 @@ public class LandingService {
 	// AI API 호출용 WebClient
 	private final WebClient aiWebClient;
 	
-	// 'forwardToAi' 라는 이름의 요리법
-	// feeling(재료)를 받아서, Mono<String>(진동벨)을 돌려줌
 	public Mono<String> forwardToAi(String feeling) {
 		// 1. 요청 데이터(feeling)를 DTO 객체로 만들기
 		AiRequestDto requestDto = new AiRequestDto(feeling);

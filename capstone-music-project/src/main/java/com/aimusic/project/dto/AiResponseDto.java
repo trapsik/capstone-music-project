@@ -1,7 +1,7 @@
 package com.aimusic.project.dto;
 
 //========================================================================
-//AiResponseDto.java: AI 서버로부터 '응답'을 받을 때 사용할 '표준 주문서' 양식
+//AiResponseDto.java: AI 서버로부터 '응답'을 받을 때 사용
 //========================================================================
 
 import lombok.AllArgsConstructor;
