@@ -1,7 +1,7 @@
 // emotion-recommend.js
 
 // 감정 기반 음악 추천 API 엔드포인트
-const RECOMMEND_API_URL = 'http://3.39.142.192:5000/emotion-recommend';
+const RECOMMEND_API_URL = 'http://43.203.93.14:5000/emotion-recommend';
 const NUM_RECS = 10;
 /**
  * 추천 받은 앨범 커버를 슬라이더 트랙에 렌더링합니다.
@@ -191,6 +191,7 @@ function renderTrackList(tracks) {
 		coverImg.style.height = '80px';
 		coverImg.style.objectFit = 'cover';
 		coverImg.style.borderRadius = '5px';
+		coverImg.style.border = "0";
 
 		const infoDiv = document.createElement('div');
 		infoDiv.style.flexGrow = '1';

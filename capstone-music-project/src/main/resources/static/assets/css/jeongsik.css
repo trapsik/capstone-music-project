@@ -101,6 +101,7 @@
     height: 100%;
     object-fit: cover;
     border-radius: 0.5rem;
+    border: 0 !important;
 }
 
 /* 트랙 정보 텍스트 영역 (JS에서 추가된 div:last-child) */

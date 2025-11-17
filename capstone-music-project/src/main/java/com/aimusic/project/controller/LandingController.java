@@ -18,7 +18,7 @@ public class LandingController {
 
 	// API 통신을 위한 RestTemplate 인스턴스 (필요 시 빈으로 등록하여 사용)
     private final RestTemplate restTemplate = new RestTemplate();
-    private final String RECOMMEND_API_URL = "http://3.39.142.192:5000/emotion-recommend";
+    private final String RECOMMEND_API_URL = "http://43.203.93.14:5000/emotion-recommend";
 	
 	// 랜딩 페이지
     @GetMapping("/")
