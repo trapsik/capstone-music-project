@@ -1,1 +1,38 @@
-function initializeSwiperCarousels(){document.querySelectorAll(".swiper-container").forEach(e=>{var t=e.getAttribute("data-speed")||400,a=e.getAttribute("data-space-between")||20,i="true"===e.getAttribute("data-pagination"),r="true"===e.getAttribute("data-navigation"),n="true"===e.getAttribute("data-autoplay"),s=e.getAttribute("data-autoplay-delay")||3e3,p=e.getAttribute("data-pagination-type")||"bullets",o="true"===e.getAttribute("data-center-slides"),u=e.getAttribute("data-effect")||"slide",l=e.getAttribute("data-breakpoints");let d={};if(l)try{d=JSON.parse(l)}catch(e){console.error("Error parsing breakpoints data:",e)}l={speed:parseInt(t),spaceBetween:parseInt(a),breakpoints:d,spaceBetween:30,slidesPerView:"auto",effect:u};"fade"===u&&(l.fadeEffect={crossFade:!0}),o&&(l.slidesPerView="auto",l.centeredSlides=!0),i&&(t=e.querySelector(".swiper-pagination"))&&(l.pagination={el:t,type:p,dynamicBullets:!0,clickable:!0},"custom"===p)&&(l.pagination.renderCustom=function(e,t,a){var i="";for(let e=1;e<=a;e++)t==e?i+=`<span class="swiper-pagination-numbers swiper-pagination-numbers-active">${e}</span>`:i+=`<span class="swiper-pagination-numbers">${e}</span>`;return i}),r?l.navigation={nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}:(a=e.querySelector(".swiper-navigation"))&&a.classList.add("swiper-navigation-hidden"),n&&(l.autoplay={delay:parseInt(s)}),new Swiper(e,l)})}initializeSwiperCarousels();
+/*
+ * 이 파일은 Plimo 프로젝트의 '.slider-track' 슬라이더를
+ * 제어하기 위해 특별히 수정된 버전입니다.
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    
+    // 1. 우리가 제어할 슬라이더 HTML 요소를 찾습니다.
+    const sliderElement = document.querySelector('.slider-track');
+
+    // 2. 해당 요소가 이 페이지에 없으면 아무것도 하지 않고 종료합니다.
+    if (!sliderElement) {
+        return;
+    }
+
+    // 3. Swiper (컨베이어 벨트)를 설정합니다.
+    const swiper = new Swiper(sliderElement, {
+        
+        // --- 기본 설정 ---
+        slidesPerView: 'auto', // 한 화면에 보이는 개수 (CSS에 따름)
+        spaceBetween: 20,      // 앨범 사이 간격 (20px)
+        loop: true,            // 무한 루프
+        
+        // --- 자동 재생 (컨베이어 벨트) 설정 ---
+        autoplay: {
+            delay: 1,                  // 딜레이 1ms (멈추지 않고 계속)
+            disableOnInteraction: false, // 사용자가 건드려도 계속 재생
+			pauseOnMouseEnter: true,
+        },
+        speed: 5000, // 5초에 걸쳐 한 바퀴 도는 속도 (숫자가 클수록 느림)
+        observer: true,
+		observeParents: true,
+        // --- (중요!) 마우스 올리면 멈추기 ---
+        // Swiper 라이브러리 자체 기능 활용
+    
+    });
+
+    console.log("'.slider-track'에 대한 Swiper 초기화 및 호버 이벤트 부착 완료.");
+});

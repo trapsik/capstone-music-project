@@ -93,6 +93,7 @@ async function initSliderWithData() {
     // API가 10곡만 반환하므로, 앨범 데이터가 10개 이상인지 확인 (최소 10개 필요)
     if (albums.length >= 10) {
         renderAlbumCovers(albums);
+		document.getElementById('album-track').classList.add('loaded');
     } else {
         console.warn('API에서 10개의 앨범 데이터를 받지 못했습니다. 슬라이더를 채울 수 없습니다.');
     }
