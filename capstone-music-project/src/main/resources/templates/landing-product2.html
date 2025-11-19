@@ -87,6 +87,10 @@
 	transform: translateY(-80px);
 	z-index: 80; /* 마우스를 올리면 다른 앨범들 위로 솟아오름 */
 }
+/* [추가] 이 페이지(결과 페이지)에서만 마우스 올렸을 때 멈추게 하기 */
+.slider-container:hover .slider-track {
+    animation-play-state: paused !important;
+}
 </style>
 </head>
 

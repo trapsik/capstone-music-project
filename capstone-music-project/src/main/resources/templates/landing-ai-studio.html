@@ -126,11 +126,28 @@
                         <form id="feelingForm"
                            class="row g-2 container-inputmood">
                            <div class="col-md-9 col-8 inputmood">
-                              <input type="text"
-                                 class="form-control ps-6" id="feeling"
-                                 name="feeling"
-                                 placeholder="오늘은 어떤 기분인가요?">
-                           </div>
+   							<textarea 
+       							class="form-control ps-4 py-3" 
+       							id="feeling" 
+       							name="feeling" 
+      							placeholder="오늘은 어떤 기분인가요? (자유롭게 적어주세요)"
+       							rows="1"
+       							style="resize: none; overflow-y: hidden; min-height: 50px; max-height: 150px; line-height: 1.5;"></textarea>
+							</div>
+							<script>
+   								const tx = document.getElementById('feeling');
+  								tx.addEventListener("input", function () {
+       							this.style.height = 'auto'; // 높이 초기화
+       							this.style.height = (this.scrollHeight) + "px"; // 내용만큼 늘리기
+       
+       							// 5줄 정도(약 150px) 넘어가면 스크롤 생기게 처리
+       							if (this.scrollHeight > 150) {
+           							this.style.overflowY = "auto";
+       							} else {
+           							this.style.overflowY = "hidden";
+       							}
+   								});
+							</script>
                            <div class="col-md-3 col-4 submit-btn">
                               <button type="submit"
                                  class="btn btn-primary">추천해볼까요?</button>
@@ -147,7 +164,7 @@
       <section class="py-lg-8 py-5" style="background: url(./assets/images/ai-studio/background.png) no-repeat; background-size: cover; background-position: center" data-cue="fadeIn">
   <div class="container ">
     <div class="table-responsive-xl slider-container">
-      <div class="row row-cols-xl-5 row-cols-md-3 row-cols-1 gx-5 flex-nowrap pb-4 pb-xl-0 slider-track album-track">
+      <div id="album-track" class="row row-cols-xl-5 row-cols-md-3 row-cols-1 gx-5 flex-nowrap pb-4 pb-xl-0 slider-track album-track">
         <div class="col slider-item border rounded-3">
         </div>
         <div class="col slider-item border rounded-3">
@@ -268,10 +285,27 @@
 
         </div>
     </div>
-</section>
-     
+</section> 
    </main>
-  
+   <footer class="footer pt-8 pb-4" style="background-color: #0b0e14; border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-12 text-center">
+                <a class="navbar-brand" href="#">
+                    <img src="./assets/images/logo/plimo.svg" alt="Plimo Logo" style="height: 50px; opacity: 0.8;">
+                </a>
+                <p class="text-white-50 mt-3">당신의 감정을 읽고, 최고의 음악을 선물합니다.</p>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-12 text-center">
+                <p class="text-white-50 small mb-0">
+                    &copy; 2025 Plimo Team. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
    <div class="btn-scroll-top">
       <svg class="progress-square svg-content" width="100%"
          height="100%" viewBox="0 0 40 40">
@@ -279,6 +313,7 @@
             d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
    </svg>
    </div>
+   
    <!-- Libs JS -->
    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
    <script src="./assets/libs/simplebar/dist/simplebar.min.js"></script>
