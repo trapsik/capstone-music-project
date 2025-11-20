@@ -1,6 +1,6 @@
 // pending-redirect.js (새로 만들거나 기존 JS 파일에 추가)
 
-const RECOMMEND_API_URL = 'http://43.203.93.14:5000/emotion-recommend';
+const RECOMMEND_API_URL = 'https://43.203.93.14:5000/emotion-recommend';
 const NUM_RECS = 10;
 // const EMOTION_PARAM = window.GLOBAL_EMOTION_PARAM || '기본';
 const emotionValue = (window.GLOBAL_EMOTION_PARAM || '기본').replace(/'|"/g, '');

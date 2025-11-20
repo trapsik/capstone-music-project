@@ -3,11 +3,11 @@
 // ★★★ 신규: 랜덤 앨범 로딩 및 슬라이더 채우기 코드 (아래에 추가) ★★★
 // =======================================================
 
-const API_URL = 'http://43.203.93.14:5000/randomten';
+const API_URL = 'https://43.203.93.14:5000/randomten';
 
 async function fetchRandomAlbums() {
     try {
-        const url = 'http://43.203.93.14:5000/randomten';
+        const url = 'https://43.203.93.14:5000/randomten';
         console.log(`Fetch 요청 URL: ${url}`);
         
         const response = await fetch(url);
