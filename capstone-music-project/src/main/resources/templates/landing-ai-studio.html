@@ -134,24 +134,46 @@
        							rows="1"
        							style="resize: none; overflow-y: hidden; min-height: 50px; max-height: 150px; line-height: 1.5;"></textarea>
 							</div>
-							<script>
-   								const tx = document.getElementById('feeling');
-  								tx.addEventListener("input", function () {
-       							this.style.height = 'auto'; // 높이 초기화
-       							this.style.height = (this.scrollHeight) + "px"; // 내용만큼 늘리기
-       
-       							// 5줄 정도(약 150px) 넘어가면 스크롤 생기게 처리
-       							if (this.scrollHeight > 150) {
-           							this.style.overflowY = "auto";
-       							} else {
-           							this.style.overflowY = "hidden";
-       							}
-   								});
-							</script>
+							
                            <div class="col-md-3 col-4 submit-btn">
-                              <button type="submit"
+                              <button type="submit" id="submit-btn"
                                  class="btn btn-primary" style="height: 58px;">추천해볼까요?</button>
                            </div>
+                           <script>
+							const tx = document.getElementById('feeling');
+							// [수정] 버튼을 찾을 때 id가 'submit-btn'이라면 getElementById 혹은 querySelector('#submit-btn')을 써야 합니다.
+							const submitButton = document.getElementById('submit-btn'); 
+
+							// 1. 기존 높이 조절 및 스크롤 로직 (그대로 유지)
+							tx.addEventListener("input", function () {
+							    this.style.height = 'auto'; // 높이 초기화
+							    this.style.height = (this.scrollHeight) + "px"; // 내용만큼 늘리기
+
+							    // 5줄 정도(약 150px) 넘어가면 스크롤 생기게 처리
+							    if (this.scrollHeight > 150) {
+							        this.style.overflowY = "auto";
+							    } else {
+							        this.style.overflowY = "hidden";
+							    }
+							});
+
+							// 2. [추가] Enter vs Shift+Enter 처리 로직
+							tx.addEventListener("keydown", function (e) {
+							    if (e.key === 'Enter') {
+							        if (!e.shiftKey) {
+							            // Case 1: Shift 없이 Enter만 눌렀을 때 -> 전송
+							            e.preventDefault(); // 엔터키의 기본 동작(줄바꿈)을 막음
+							            
+							            // 버튼이 존재하면 클릭
+							            if (submitButton) {
+							                submitButton.click();
+							            }
+							        }
+							        // Case 2: Shift + Enter -> 아무 처리 안 함 (기본 동작인 줄바꿈이 실행됨)
+							        // 줄바꿈이 되면 텍스트가 변하므로 위의 'input' 이벤트가 자동으로 실행되어 높이가 조절됩니다.
+							    }
+							});
+							</script>
                         </form>
                      </div>
                   </div>
