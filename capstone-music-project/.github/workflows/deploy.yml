@@ -4,7 +4,7 @@ name: Plimo CD (Auto Deploy)
 on:
   push:
     branches:
-    - display-recommend-result # ★주의: 본인 브랜치 이름이 master라면 master로 수정!
+    - feature/display-recommendation-result # ★주의: 본인 브랜치 이름이 master라면 master로 수정!
 
 # 해야 할 작업 목록
 jobs:
