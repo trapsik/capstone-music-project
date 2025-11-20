@@ -1,6 +1,6 @@
 // randomTen.js
 
-// ★★★ 변경됨: 내 서버(Spring Boot)로 요청을 보냅니다. ★★★
+// ★★★ 변경됨: 내 서버(Spring Boot)로 요청을 보냅니다. ★★★★
 const API_URL = '/api/random-ten';
 
 async function fetchRandomAlbums() {
