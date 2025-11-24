@@ -29,36 +29,42 @@ async function fetchRandomAlbums() {
 function renderAlbumCovers(albums) {
     const allSliderItems = document.querySelectorAll('.slider-track > .col');
     
+    // 원본 10개 항목에 데이터를 매핑합니다.
     for (let i = 0; i < 10; i++) {
         const albumData = albums[i];
         const itemDiv = allSliderItems[i]; 
 
         if (albumData && itemDiv) {
-			console.log(`매핑 중: 인덱스 ${i}, 앨범명: ${albumData.track_name}`); 
             let contentContainer = itemDiv.querySelector('.rounded-3');
             
             if (!contentContainer) {
                 contentContainer = itemDiv;
             }
             
-			console.log(`인덱스 ${i}에 앨범 커버 삽입 시도: ${albumData.album_cover_url}`);
-            contentContainer.innerHTML = ''; 
-
-            const img = document.createElement('img');
-            img.src = albumData.album_cover_url;
-            img.alt = `${albumData.track_name} - ${albumData.artist} 앨범 커버`;
-            
-            img.style.width = '100%';
-            img.style.height = '100%';
-            img.style.objectFit = 'cover'; 
-            img.style.borderRadius = '0.5rem';
-			img.style.opacity = '0.9'; 
-
-            contentContainer.appendChild(img);
+            // ★★★ [수정됨] 전체를 <a> 태그로 감싸서 클릭 시 유튜브로 이동하게 변경 ★★★
+            contentContainer.innerHTML = `
+                <a href="${albumData.youtube_url}" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                    <div style="display: flex; flex-direction: column; height: 100%;">
+                        <img src="${albumData.album_cover_url}" 
+                             alt="${albumData.track_name}"
+                             style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; opacity: 0.9;">
+                        
+                        <div class="mt-3 text-start">
+                            <h5 class="text-mute fw-bold mb-1 text-truncate" style="font-size: 1rem;">
+                                ${albumData.track_name}
+                            </h5>
+                            <p class="text-white-50 small mb-0 text-truncate">
+                                ${albumData.artist}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            `;
         }
     }
 
-    // 무한 루프용 복제
+    // 무한 루프를 위한 복제 항목 업데이트 (10~19번째)
+    // 원본에 <a> 태그를 넣었으니 복제본에도 자동으로 링크가 걸립니다.
     for (let i = 0; i < 10; i++) {
         const originalItemHTML = allSliderItems[i].innerHTML;
         const clonedItemDiv = allSliderItems[i + 10]; 
