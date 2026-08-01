@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<link rel="stylesheet"
+	href="./assets/libs/glightbox/dist/css/glightbox.min.css" />
+<link rel="stylesheet" href="./assets/libs/swiper/swiper-bundle.min.css" />
+<!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!-- Favicon icon-->
+<link rel="apple-touch-icon" sizes="180x180"
+	href="./assets/images/favicon/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32"
+	href="./assets/images/favicon/plimo-favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16"
+	href="./assets/images/favicon/plimo-favicon-16x16.png" />
+<link rel="manifest" href="./assets/images/favicon/site.webmanifest" />
+<link rel="mask-icon"
+	href="./assets/images/favicon/block-safari-pinned-tab.svg"
+	color="#8b3dff" />
+<link rel="shortcut icon"
+	href="./assets/images/favicon/plimo-favicon.ico" />
+<meta name="msapplication-TileColor" content="#8b3dff" />
+<meta name="msapplication-config"
+	content="./assets/images/favicon/tile.xml" />
+
+<!-- Color modes -->
+<script src="./assets/js/vendors/color-modes.js"></script>
+
+<!-- Libs CSS -->
+<link href="./assets/libs/simplebar/dist/simplebar.min.css"
+	rel="stylesheet" />
+<link href="./assets/libs/bootstrap-icons/font/bootstrap-icons.min.css"
+	rel="stylesheet" />
+
+<!-- Scroll Cue -->
+<link rel="stylesheet" href="./assets/libs/scrollcue/scrollCue.css" />
+
+<!-- Box icons -->
+<link rel="stylesheet" href="./assets/fonts/css/boxicons.min.css" />
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="./assets/css/theme.min.css">
+<link rel="stylesheet" href="./assets/css/jeongsik.css">
+
+<title>Plimo | 음악추천완료</title>
+<style>
+/* --- 1. 앨범 부드럽게 등장 (Fade-in) --- */
+#album-track {
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+#album-track.loaded {
+	opacity: 1;
+}
+
+/* --- 2. 앨범 잘림 방지 및 솟아오르기 (축 분리 최종판) --- */
+
+/*
+    (★핵심★)
+    부모 컨테이너(가면)에게
+    "옆으로는" 자르고 (hidden)
+    "위로는" 삐져나오게 (visible) 허용합니다.
+  */
+.slider-container, .table-responsive-xl {
+	overflow-x: hidden !important; /* 옆으로 가는 건 잘라라! */
+	overflow-y: visible !important; /* 위로 솟는 건 봐줘라! */
+}
+
+/* 컨베이어 벨트 자체도 위로 삐져나오는 것을 허용합니다.
+  */
+.slider-track {
+	overflow-y: visible !important;
+	padding-top: 80px;
+}
+
+.slider-item {
+	transition: transform 0.3s ease-in-out;
+	position: relative; /* z-index를 적용하려면 필수 */
+	z-index: 1; /* 평소에는 기본 z-index */
+}
+
+.slider-item:hover {
+	transform: translateY(-80px);
+	z-index: 80; /* 마우스를 올리면 다른 앨범들 위로 솟아오름 */
+}
+/* [추가] 이 페이지(결과 페이지)에서만 마우스 올렸을 때 멈추게 하기 */
+/* .slider-container:hover .slider-track {
+    animation-play-state: paused !important;
+} */
+</style>
+</head>
+
+<body>
+	<!-- Navbar -->
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light w-100">
+			<div class="container-fluid px-4">
+				<a class="navbar-brand" th:href="@{/}"><img
+					src="./assets/images/logo/plimo.svg" class="logo-plimo" /></a>
+				<div class="offcanvas-body pt-0 align-items-center">
+					<div class="mt-3 mt-lg-0 d-flex align-items-center"></div>
+				</div>
+			</div>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<!--Hero start-->
+		<section class="particals py-md-10 py-5"
+			style="background: url(./assets/images/ai-studio/ai-hero-glow.png) no-repeat; background-size: cover; background-position: center"
+			data-cue="fadeIn">
+			<canvas id="starCanvas"></canvas>
+			<div class="container py-lg-8">
+				<div class="row align-items-center gy-8">
+					<div class="col-xxl-5 col-lg-6 analysis-complete" data-cue="fadeIn">
+						<!-- 텍스트 보라색 강조 -->
+						<!-- <span class="text-primary">Smart. Silent.</span> -->
+						<h1 class="display-4">
+							<p th:text="|${recommendationPhrase} 당신을 위한 선곡|"></p>
+							</br>
+
+						</h1>
+
+
+					</div>
+
+				</div>
+			</div>
+
+		</section>
+
+		<section class="py-lg-8 py-5"
+			style="background: url(./assets/images/ai-studio/background.png) no-repeat; background-size: cover; background-position: center"
+			data-cue="fadeIn">
+			<div class="container-fluid px-0">
+				<div class="table-responsive-xl slider-container" style="width: 100%">
+					<div id="album-track"
+						class="row row-cols-xl-5 row-cols-md-3 row-cols-1 gx-5 flex-nowrap pb-4 pb-xl-0 slider-track">
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img alt="앨범 커버" class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+						<div class="col slider-item border rounded-3">
+							<img class="img-fluid track-cover"
+								style="width: 100%; height: auto; aspect-ratio: 1/1.5; object-fit: cover;">
+							<div class="track-info text-start">
+								<h4 class="text-mute fw-bold mb-1 text-truncate track-title"></h4>
+								<p class="text-muted small text-truncate track-artist"></p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+<footer class="footer pt-8 pb-4" style="background-color: #0b0e14; border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-12 text-center">
+                <a class="navbar-brand" th:href="@{/}">
+                    <img src="./assets/images/logo/plimo.svg" alt="Plimo Logo" style="height: 50px; opacity: 0.8;">
+                </a>
+                <p class="text-white-50 mt-3">당신의 감정을 읽고, 최고의 음악을 선물합니다.</p>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-12 text-center">
+                <p class="text-white-50 small mb-0">
+                    &copy; 2025 Plimo Team. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+	<div class="btn-scroll-top">
+		<svg class="progress-square svg-content" width="100%" height="100%"
+			viewBox="0 0 40 40">
+      <path
+				d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
+   </svg>
+	</div>
+	<!-- Libs JS -->
+	<script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="./assets/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="./assets/libs/headhesive/dist/headhesive.min.js"></script>
+
+	<!-- Theme JS -->
+	<script src="./assets/js/theme.min.js"></script>
+
+
+	<script src="./assets/libs/scrollcue/scrollCue.min.js"></script>
+	<script src="./assets/js/vendors/scrollcue.js"></script>
+	<!--Swiper JS -->
+	<script src="./assets/libs/swiper/swiper-bundle.min.js"></script>
+	<script src="./assets/js/vendors/swiper.js"></script>
+	<script src="./assets/libs/glightbox/dist/js/glightbox.min.js"></script>
+	<script src="./assets/js/vendors/glight.js"></script>
+	<script src="./assets/libs/parallax-js/dist/parallax.min.js"></script>
+	<script src="./assets/js/vendors/parallax.js"></script>
+	<script src="./assets/libs/rellax/rellax.min.js"></script>
+	<script src="./assets/js/vendors/rellax.js"></script>
+
+	<!--  Ai API JS -->
+	<script src="./assets/js/vendors/emotion-recommend.js"></script>
+
+
+</body>
+
+
+</html>

@@ -1,8 +1,18 @@
+# ====================================================================
+# application.yml: 우리 서버의 각종 설정 정보를 기록하는 '전화번호부' 파일
+# ====================================================================
+
 # 어플리케이션 포트 => 디폴트가 8080
 server:
   port: 8088
+
+# ai api 설정
+ai:
+  base-url: http://43.203.93.14:5000  # AWS EC2 - AI API URL
+
+# DB 설정
 # mybatis
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  config-location: classpath:mybatis-config.xml
-  type-aliases-package: com.example.demo.dtd 
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+#  config-location: classpath:mybatis-config.xml
+#  type-aliases-package: com.example.demo.dtd 
